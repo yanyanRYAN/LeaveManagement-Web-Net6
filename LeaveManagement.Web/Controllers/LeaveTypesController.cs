@@ -9,9 +9,12 @@ using LeaveManagement.Web.Data;
 using AutoMapper;
 using LeaveManagement.Web.Models;
 using LeaveManagement.Web.Contracts;
+using Microsoft.AspNetCore.Authorization;
+using LeaveManagement.Web.Constants;
 
 namespace LeaveManagement.Web.Controllers
 {
+    [Authorize(Roles = Roles.Administrator)]//limits view of entire controller to authorized users
     public class LeaveTypesController : Controller
     {
         private readonly ILeaveTypeRepository leaveTypeRepository;//this abstraction replaces the need for hard implementation of ApplicationDBContext
@@ -48,11 +51,13 @@ namespace LeaveManagement.Web.Controllers
             return View(leaveTypeVM);
         }
 
+        
         // GET: LeaveTypes/Create
         public IActionResult Create()
         {
             return View();
         }
+
 
         // POST: LeaveTypes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
