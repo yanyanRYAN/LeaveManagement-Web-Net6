@@ -1,6 +1,7 @@
 ﻿using LeaveManagement.Web.Configurations.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using LeaveManagement.Web.Models;
 
 namespace LeaveManagement.Web.Data
 {
@@ -22,5 +23,12 @@ namespace LeaveManagement.Web.Data
 
         public DbSet<LeaveType> LeaveTypes { get; set; } //dbset -- "collection of" modeled off LeaveType pluralized
         public DbSet<LeaveAllocation> LeaveAllocations { get; set; }
+        
+        //when creating views using the view models the scaffolding operation will add a dbset. we remove them otherwise the ViewModel will be created as a table in the db
+        
+        
+        
+        
+        
     }
 }

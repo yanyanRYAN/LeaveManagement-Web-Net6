@@ -19,6 +19,16 @@ namespace LeaveManagement.Web.Repositories
             return entity;
         }
 
+        public async Task AddRangeAsync(List<T> entities)
+        {
+            /*
+             *  Instead of having to go to the database to add a single entity for many times
+             *  we can queue them up into a list and add a range of those all at one commit.
+             */
+            await context.AddRangeAsync(entities);
+            await context.SaveChangesAsync();
+        }
+
         public async Task DeleteAsync(int id)
         {
             var entity = await context.Set<T>().FindAsync(id); //Set<T> is generic it finds the matching DBset type in Applicationdbcontext
